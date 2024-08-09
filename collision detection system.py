@@ -33,11 +33,9 @@ def setRGB(r,g,b):
     bus.write_byte_data(DISPLAY_RGB_ADDR,3,g)
     bus.write_byte_data(DISPLAY_RGB_ADDR,2,b)
 
-# send command to display (no need for external use)
 def textCommand(cmd):
     bus.write_byte_data(DISPLAY_TEXT_ADDR,0x80,cmd)
 
-# set display text \n for second line(or auto wrap)
 def setText(text):
     textCommand(0x01) # clear display
     time.sleep(.05)
@@ -95,7 +93,7 @@ def create_char(location, pattern):
     textCommand(0x40 | (location << 3))
     bus.write_i2c_block_data(DISPLAY_TEXT_ADDR, 0x40, pattern)
 
-# example code
+# code
 if __name__=="__main__":
     ultrasonic_ranger = 3
     setText("collision detection System")
